@@ -109,9 +109,9 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 		y(C);
 	};
 	else if (typeof MessageChannel < "u") {
-		var w = new MessageChannel(), ae = w.port2;
-		w.port1.onmessage = C, ie = function() {
-			ae.postMessage(null);
+		var ae = new MessageChannel(), w = ae.port2;
+		ae.port1.onmessage = C, ie = function() {
+			w.postMessage(null);
 		};
 	} else ie = function() {
 		_(C, 0);
@@ -250,10 +250,10 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 	function ie(e, t) {
 		return C(e.type, t, e.props);
 	}
-	function w(e) {
+	function ae(e) {
 		return typeof e == "object" && !!e && e.$$typeof === t;
 	}
-	function ae(e) {
+	function w(e) {
 		var t = {
 			"=": "=0",
 			":": "=2"
@@ -264,7 +264,7 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 	}
 	var T = /\/+/g;
 	function oe(e, t) {
-		return typeof e == "object" && e && e.key != null ? ae("" + e.key) : t.toString(36);
+		return typeof e == "object" && e && e.key != null ? w("" + e.key) : t.toString(36);
 	}
 	function se(e) {
 		switch (e.status) {
@@ -302,7 +302,7 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 		}
 		if (c) return o = o(e), c = a === "" ? "." + oe(e, 0) : a, te(o) ? (i = "", c != null && (i = c.replace(T, "$&/") + "/"), ce(o, r, i, "", function(e) {
 			return e;
-		})) : o != null && (w(o) && (o = ie(o, i + (o.key == null || e && e.key === o.key ? "" : ("" + o.key).replace(T, "$&/") + "/") + c)), r.push(o)), 1;
+		})) : o != null && (ae(o) && (o = ie(o, i + (o.key == null || e && e.key === o.key ? "" : ("" + o.key).replace(T, "$&/") + "/") + c)), r.push(o)), 1;
 		c = 0;
 		var l = a === "" ? "." : a + ":";
 		if (te(e)) for (var u = 0; u < e.length; u++) a = e[u], s = l + oe(a, u), c += ce(a, r, i, s, o);
@@ -385,7 +385,7 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 			}) || [];
 		},
 		only: function(e) {
-			if (!w(e)) throw Error("React.Children.only expected to receive a single React element child.");
+			if (!ae(e)) throw Error("React.Children.only expected to receive a single React element child.");
 			return e;
 		}
 	};
@@ -441,7 +441,7 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 			$$typeof: c,
 			render: e
 		};
-	}, e.isValidElement = w, e.lazy = function(e) {
+	}, e.isValidElement = ae, e.lazy = function(e) {
 		return {
 			$$typeof: d,
 			_payload: {
@@ -805,7 +805,7 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 		}
 		return null;
 	}
-	var C = Object.assign, ie = Symbol.for("react.element"), w = Symbol.for("react.transitional.element"), ae = Symbol.for("react.portal"), T = Symbol.for("react.fragment"), oe = Symbol.for("react.strict_mode"), se = Symbol.for("react.profiler"), ce = Symbol.for("react.consumer"), E = Symbol.for("react.context"), le = Symbol.for("react.forward_ref"), ue = Symbol.for("react.suspense"), de = Symbol.for("react.suspense_list"), fe = Symbol.for("react.memo"), pe = Symbol.for("react.lazy"), me = Symbol.for("react.activity"), he = Symbol.for("react.legacy_hidden"), ge = Symbol.for("react.memo_cache_sentinel"), _e = Symbol.for("react.view_transition"), ve = Symbol.for("react.recoverable"), ye = Symbol.iterator;
+	var C = Object.assign, ie = Symbol.for("react.element"), ae = Symbol.for("react.transitional.element"), w = Symbol.for("react.portal"), T = Symbol.for("react.fragment"), oe = Symbol.for("react.strict_mode"), se = Symbol.for("react.profiler"), ce = Symbol.for("react.consumer"), E = Symbol.for("react.context"), le = Symbol.for("react.forward_ref"), ue = Symbol.for("react.suspense"), de = Symbol.for("react.suspense_list"), fe = Symbol.for("react.memo"), pe = Symbol.for("react.lazy"), me = Symbol.for("react.activity"), he = Symbol.for("react.legacy_hidden"), ge = Symbol.for("react.memo_cache_sentinel"), _e = Symbol.for("react.view_transition"), ve = Symbol.for("react.recoverable"), ye = Symbol.iterator;
 	function be(e) {
 		return typeof e != "object" || !e ? null : (e = ye && e[ye] || e["@@iterator"], typeof e == "function" ? e : null);
 	}
@@ -824,7 +824,7 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 			case _e: return "ViewTransition";
 		}
 		if (typeof e == "object") switch (e.$$typeof) {
-			case ae: return "Portal";
+			case w: return "Portal";
 			case E: return e.displayName || "Context";
 			case ce: return (e._context.displayName || "Context") + ".Consumer";
 			case le:
@@ -2646,8 +2646,8 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 			if (typeof t == "string" && t !== "" || typeof t == "number" || typeof t == "bigint") return t = qi("" + t, e.mode, n), t.return = e, t;
 			if (typeof t == "object" && t) {
 				switch (t.$$typeof) {
-					case w: return n = Gi(t.type, t.key, t.props, null, e.mode, n), go(n, t), n.return = e, n;
-					case ae: return t = Yi(t, e.mode, n), t.return = e, t;
+					case ae: return n = Gi(t.type, t.key, t.props, null, e.mode, n), go(n, t), n.return = e, n;
+					case w: return t = Yi(t, e.mode, n), t.return = e, t;
 					case pe: return t = co(t), f(e, t, n);
 				}
 				if (Ce(t) || be(t)) return t = Ki(t, e.mode, n, null), t.return = e, t;
@@ -2662,8 +2662,8 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 			if (typeof n == "string" && n !== "" || typeof n == "number" || typeof n == "bigint") return i === null ? c(e, t, "" + n, r) : null;
 			if (typeof n == "object" && n) {
 				switch (n.$$typeof) {
-					case w: return n.key === i ? l(e, t, n, r) : null;
-					case ae: return n.key === i ? u(e, t, n, r) : null;
+					case ae: return n.key === i ? l(e, t, n, r) : null;
+					case w: return n.key === i ? u(e, t, n, r) : null;
 					case pe: return n = co(n), p(e, t, n, r);
 				}
 				if (Ce(n) || be(n)) return i === null ? d(e, t, n, r, null) : null;
@@ -2677,8 +2677,8 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 			if (typeof r == "string" && r !== "" || typeof r == "number" || typeof r == "bigint") return e = e.get(n) || null, c(t, e, "" + r, i);
 			if (typeof r == "object" && r) {
 				switch (r.$$typeof) {
-					case w: return e = e.get(r.key === null ? n : r.key) || null, l(t, e, r, i);
-					case ae: return e = e.get(r.key === null ? n : r.key) || null, u(t, e, r, i);
+					case ae: return e = e.get(r.key === null ? n : r.key) || null, l(t, e, r, i);
+					case w: return e = e.get(r.key === null ? n : r.key) || null, u(t, e, r, i);
 					case pe: return r = co(r), m(e, t, n, r, i);
 				}
 				if (Ce(r) || be(r)) return e = e.get(n) || null, d(t, e, r, i, null);
@@ -2732,7 +2732,7 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 		function _(e, r, a, c) {
 			if (typeof a == "object" && a && a.type === T && a.key === null && a.props.ref === void 0 && (a = a.props.children), typeof a == "object" && a) {
 				switch (a.$$typeof) {
-					case w:
+					case ae:
 						a: {
 							for (var l = a.key; r !== null;) {
 								if (r.key === l) {
@@ -2753,7 +2753,7 @@ var e = (e, t) => () => (t || (e((t = { exports: {} }).exports, t, t.exports), e
 							a.type === T ? (c = Ki(a.props.children, e.mode, c, a.key), go(c, a), c.return = e, e = c) : (c = Gi(a.type, a.key, a.props, null, e.mode, c), go(c, a), c.return = e, e = c);
 						}
 						return o(e);
-					case ae:
+					case w:
 						a: {
 							for (l = a.key; r !== null;) {
 								if (r.key === l) {
@@ -9127,7 +9127,32 @@ var b = /* @__PURE__ */ e(((e) => {
 })), x = (/* @__PURE__ */ e(((e, t) => {
 	t.exports = b();
 })))();
-function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a }) {
+function ee() {
+	return /* @__PURE__ */ (0, x.jsxs)("span", {
+		role: "status",
+		"aria-label": "جارٍ التحميل",
+		style: {
+			display: "flex",
+			justifyContent: "center",
+			padding: 12
+		},
+		children: [/* @__PURE__ */ (0, x.jsx)("span", {
+			"aria-hidden": "true",
+			style: {
+				display: "block",
+				width: 24,
+				height: 24,
+				borderRadius: "50%",
+				border: "2px solid #b3edd9",
+				borderTopColor: "#00a879",
+				animation: "tamkeen-loading 0.8s linear infinite"
+			}
+		}), /* @__PURE__ */ (0, x.jsx)("style", { children: "\n        @keyframes tamkeen-loading { to { transform: rotate(360deg); } }\n        @media (prefers-reduced-motion: reduce) {\n          [aria-label=\"جارٍ التحميل\"] > span { animation: none !important; }\n        }\n      " })]
+	});
+}
+//#endregion
+//#region src/components/BufferedVideo.tsx
+function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a }) {
 	let o = (0, l.useRef)(null), s = (0, l.useRef)([]), c = (0, l.useRef)(0), [u, d] = (0, l.useState)(0), [f, p] = (0, l.useState)(!1), [m, h] = (0, l.useState)(!1), g = (0, l.useRef)({
 		onEnded: i,
 		onError: a
@@ -9136,8 +9161,8 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 		onEnded: i,
 		onError: a
 	};
-	let _ = (0, l.useRef)(null), v = (0, l.useRef)(null), y = (0, l.useRef)(!1), [b, ee] = (0, l.useState)(!1), te = (0, l.useRef)(void 0);
-	function ne(e, t) {
+	let _ = (0, l.useRef)(null), v = (0, l.useRef)(null), y = (0, l.useRef)(!1), [b, te] = (0, l.useState)(!1), ne = (0, l.useRef)(void 0);
+	function S(e, t) {
 		v.current?.cancel();
 		let n = window.matchMedia("(prefers-reduced-motion: reduce)").matches, r = _.current.animate(e, {
 			duration: n ? 1 : t,
@@ -9146,10 +9171,10 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 		});
 		return v.current = r, r.finished;
 	}
-	function S() {
+	function re() {
 		if (!y.current) {
 			if (!t) return g.current.onEnded();
-			y.current = !0, te.current = setTimeout(() => ee(!0), 1200), ne([{ opacity: 0 }, { opacity: 1 }], 50).catch(() => {}), g.current.onEnded();
+			y.current = !0, ne.current = setTimeout(() => te(!0), 1200), S([{ opacity: 0 }, { opacity: 1 }], 50).catch(() => {}), g.current.onEnded();
 		}
 	}
 	(0, l.useEffect)(() => {
@@ -9163,9 +9188,9 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 			if (r.pause(), i = setTimeout(() => {
 				t && r.getAttribute("src") !== t && (r.src = t, r.load()), t && r.ended && (r.currentTime = 0);
 			}, 110), e) {
-				if (clearTimeout(te.current), ee(!1), await new Promise((e) => requestAnimationFrame(() => requestAnimationFrame(() => e()))), n) return;
+				if (clearTimeout(ne.current), te(!1), await new Promise((e) => requestAnimationFrame(() => requestAnimationFrame(() => e()))), n) return;
 				try {
-					if (await ne([{ opacity: 1 }, { opacity: 0 }], 90), n) return;
+					if (await S([{ opacity: 1 }, { opacity: 0 }], 90), n) return;
 					y.current = !1;
 				} catch {
 					n || p(!0);
@@ -9187,11 +9212,11 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 	]), (0, l.useEffect)(() => {
 		let e = s.current;
 		return () => {
-			clearTimeout(te.current), v.current?.cancel();
+			clearTimeout(ne.current), v.current?.cancel();
 			for (let t of e) t?.pause(), t?.removeAttribute("src"), t?.load();
 		};
 	}, []);
-	function re() {
+	function C() {
 		h(!1);
 		let e = o.current;
 		e?.close(), e?.show(), document.fullscreenElement && document.exitFullscreen().catch(() => {});
@@ -9202,7 +9227,7 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 		"data-sign-player": !0,
 		"aria-label": "مشغل لغة الإشارة",
 		onCancel: (e) => {
-			e.preventDefault(), re();
+			e.preventDefault(), C();
 		},
 		style: {
 			position: m ? "fixed" : "relative",
@@ -9230,10 +9255,10 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 				controlsList: "nofullscreen",
 				controls: t === u,
 				onEnded: () => {
-					t === c.current && S();
+					t === c.current && re();
 				},
 				onError: () => {
-					s.current[t]?.getAttribute("src") === e && (clearTimeout(te.current), ee(!1), g.current.onError());
+					s.current[t]?.getAttribute("src") === e && (clearTimeout(ne.current), te(!1), g.current.onError());
 				},
 				style: {
 					position: "absolute",
@@ -9267,16 +9292,12 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 					}
 				})
 			}),
-			b && /* @__PURE__ */ (0, x.jsx)("span", {
-				role: "status",
+			b && /* @__PURE__ */ (0, x.jsx)("div", {
 				style: {
 					position: "absolute",
-					inset: "48% 0 auto",
-					textAlign: "center",
-					fontSize: 12,
-					color: "#16473c"
+					inset: "48% 0 auto"
 				},
-				children: "جارٍ تجهيز المقطع التالي…"
+				children: /* @__PURE__ */ (0, x.jsx)(ee, {})
 			}),
 			f && /* @__PURE__ */ (0, x.jsx)("button", {
 				type: "button",
@@ -9295,7 +9316,7 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 				"aria-label": m ? "إنهاء ملء الشاشة" : "ملء الشاشة",
 				onClick: () => {
 					let e = o.current;
-					if (m) return re();
+					if (m) return C();
 					e && (h(!0), e.close(), e.showModal(), e.requestFullscreen?.().catch(() => {}));
 				},
 				style: {
@@ -9316,7 +9337,7 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 }
 //#endregion
 //#region src/components/usePreparedVideos.ts
-function te(e) {
+function ne(e) {
 	let t = JSON.stringify(e), [n, r] = (0, l.useState)(0), [i, a] = (0, l.useState)({
 		key: "",
 		loaded: 0,
@@ -9373,15 +9394,15 @@ function te(e) {
 }
 //#endregion
 //#region src/components/SignVideo.tsx
-var ne = {
+var S = {
 	"البحث عن القضية": "الاستعلام عن القضية",
 	"إرفاق المستندات": "رفع الملف",
 	"متابعة حالة الطلب": "حالة الطلب",
 	"تفاصيل الحكم": "عرض الحكم",
 	"بدء الحضور": "حضور الجلسة"
 };
-function S({ text: e = "", steps: t, onStep: n }) {
-	let [r, i] = (0, l.useState)(), [a, o] = (0, l.useState)(!1), [s, c] = (0, l.useState)(0), [u, d] = (0, l.useState)(0), [f, p] = (0, l.useState)(""), [m, h] = (0, l.useState)(""), [g, _] = (0, l.useState)(!1), [b, S] = (0, l.useState)(!1);
+function re({ text: e = "", steps: t, onStep: n }) {
+	let [r, i] = (0, l.useState)(), [a, o] = (0, l.useState)(!1), [s, c] = (0, l.useState)(0), [u, d] = (0, l.useState)(0), [f, p] = (0, l.useState)(""), [m, h] = (0, l.useState)(""), [g, _] = (0, l.useState)(!1), [b, re] = (0, l.useState)(!1);
 	(0, l.useEffect)(() => {
 		let e = !0;
 		return y().then((t) => {
@@ -9392,18 +9413,18 @@ function S({ text: e = "", steps: t, onStep: n }) {
 			e = !1;
 		};
 	}, [s]);
-	let re = (0, l.useMemo)(() => r?.match(e), [r, e]), C = t?.flatMap((e, t) => {
-		let n = r?.findPhrase(e) ?? r?.findPhrase(ne[e] ?? "");
+	let C = (0, l.useMemo)(() => r?.match(e), [r, e]), ie = t?.flatMap((e, t) => {
+		let n = r?.findPhrase(e) ?? r?.findPhrase(S[e] ?? "");
 		return n ? [{
 			clip: n,
 			step: t
 		}] : [];
-	}), ie = t ? [] : r?.search(f) ?? [], w = m ? r?.search("").find((e) => e.src === m) : void 0, ae = C ?? re?.items ?? [], T = te(w ? [v(w)] : ae.map((e) => v(e.clip))), oe = w ?? ae[u]?.clip, se = w ? void 0 : re?.items[u]?.spelling, ce = C?.[u]?.step, E = t ? t.length - ae.length : 0, le = !t && !w && re?.missing.length ? Array.from(new Set(re.missing)).join("، ") : "";
+	}), ae = t ? [] : r?.search(f) ?? [], w = m ? r?.search("").find((e) => e.src === m) : void 0, T = ie ?? C?.items ?? [], oe = ne(w ? [v(w)] : T.map((e) => v(e.clip))), se = w ?? T[u]?.clip, ce = w ? void 0 : C?.items[u]?.spelling, E = ie?.[u]?.step, le = t ? t.length - T.length : 0, ue = !t && !w && C?.missing.length ? Array.from(new Set(C.missing)).join("، ") : "";
 	(0, l.useEffect)(() => {
-		ce !== void 0 && n?.(ce);
-	}, [ce, n]);
-	function ue(e) {
-		d(e), _(!1), S(!1);
+		E !== void 0 && n?.(E);
+	}, [E, n]);
+	function de(e) {
+		d(e), _(!1), re(!1);
 	}
 	return /* @__PURE__ */ (0, x.jsxs)("div", {
 		style: {
@@ -9414,36 +9435,38 @@ function S({ text: e = "", steps: t, onStep: n }) {
 			color: "#16473c"
 		},
 		children: [
-			oe && !T.urls && /* @__PURE__ */ (0, x.jsxs)("div", {
-				role: "status",
+			se && !oe.urls && /* @__PURE__ */ (0, x.jsxs)("div", {
 				style: {
 					padding: "12px",
 					fontSize: 12,
 					textAlign: "center"
 				},
-				children: [T.error ? "تعذّر تجهيز الفيديو." : `جارٍ تجهيز الترجمة للتشغيل المتصل… ${T.loaded} / ${T.total}`, T.error && /* @__PURE__ */ (0, x.jsx)("button", {
+				children: [oe.error ? /* @__PURE__ */ (0, x.jsx)("span", {
+					role: "status",
+					children: "تعذّر تجهيز الفيديو."
+				}) : /* @__PURE__ */ (0, x.jsx)(ee, {}), oe.error && /* @__PURE__ */ (0, x.jsx)("button", {
 					type: "button",
-					onClick: T.retry,
+					onClick: oe.retry,
 					children: "إعادة المحاولة"
 				})]
 			}),
-			oe && T.urls && /* @__PURE__ */ (0, x.jsxs)(x.Fragment, { children: [
-				/* @__PURE__ */ (0, x.jsx)(ee, {
+			se && oe.urls && /* @__PURE__ */ (0, x.jsxs)(x.Fragment, { children: [
+				/* @__PURE__ */ (0, x.jsx)(te, {
 					position: u,
-					src: T.urls[v(oe)],
-					nextSrc: !w && ae[u + 1] ? T.urls[v(ae[u + 1].clip)] : void 0,
-					label: oe.label,
-					onEnded: () => !w && u + 1 < ae.length ? ue(u + 1) : _(!0),
-					onError: () => S(!0)
+					src: oe.urls[v(se)],
+					nextSrc: !w && T[u + 1] ? oe.urls[v(T[u + 1].clip)] : void 0,
+					label: se.label,
+					onEnded: () => !w && u + 1 < T.length ? de(u + 1) : _(!0),
+					onError: () => re(!0)
 				}),
-				se && /* @__PURE__ */ (0, x.jsxs)("p", {
+				ce && /* @__PURE__ */ (0, x.jsxs)("p", {
 					style: {
 						margin: "5px 8px 0",
 						fontSize: 11
 					},
 					children: [
 						"تهجئة «",
-						se,
+						ce,
 						"»"
 					]
 				}),
@@ -9457,23 +9480,23 @@ function S({ text: e = "", steps: t, onStep: n }) {
 						fontSize: 11
 					},
 					children: [
-						!w && ae.length > 1 && /* @__PURE__ */ (0, x.jsx)("button", {
+						!w && T.length > 1 && /* @__PURE__ */ (0, x.jsx)("button", {
 							type: "button",
 							disabled: u === 0,
-							onClick: () => ue(u - 1),
+							onClick: () => de(u - 1),
 							children: "السابق"
 						}),
-						/* @__PURE__ */ (0, x.jsxs)("span", { children: [oe.label, !w && ` · ${u + 1} / ${ae.length}`] }),
-						!w && ae.length > 1 && /* @__PURE__ */ (0, x.jsx)("button", {
+						/* @__PURE__ */ (0, x.jsxs)("span", { children: [se.label, !w && ` · ${u + 1} / ${T.length}`] }),
+						!w && T.length > 1 && /* @__PURE__ */ (0, x.jsx)("button", {
 							type: "button",
-							disabled: u + 1 === ae.length,
-							onClick: () => ue(u + 1),
+							disabled: u + 1 === T.length,
+							onClick: () => de(u + 1),
 							children: "التالي"
 						})
 					]
 				})
 			] }),
-			(a || !r || !oe || b || g || E > 0 || le) && /* @__PURE__ */ (0, x.jsxs)("div", {
+			(a || !r || !se || b || g || le > 0 || ue) && /* @__PURE__ */ (0, x.jsxs)("div", {
 				role: "status",
 				style: {
 					padding: "7px 9px",
@@ -9481,8 +9504,8 @@ function S({ text: e = "", steps: t, onStep: n }) {
 					textAlign: "center"
 				},
 				children: [
-					a ? "تعذّر تحميل المقاطع." : r ? oe ? b ? "تعذّر تشغيل هذا المقطع." : /* @__PURE__ */ (0, x.jsxs)(x.Fragment, { children: [g && "انتهى تشغيل المقاطع. ", E > 0 && `${E} خطوة بلا مقطع مطابق.`] }) : t ? "لا تتوفر مقاطع مطابقة لخطوات هذا المسار." : e ? "لا توجد مقاطع مطابقة لهذا النص." : "اختر مقطعًا من المكتبة." : "جارٍ تحميل المقاطع…",
-					le && /* @__PURE__ */ (0, x.jsxs)("div", { children: ["حروف أو رموز بلا مقطع: ", le] }),
+					a ? "تعذّر تحميل المقاطع." : r ? se ? b ? "تعذّر تشغيل هذا المقطع." : /* @__PURE__ */ (0, x.jsxs)(x.Fragment, { children: [g && "انتهى تشغيل المقاطع. ", le > 0 && `${le} خطوة بلا مقطع مطابق.`] }) : t ? "لا تتوفر مقاطع مطابقة لخطوات هذا المسار." : e ? "لا توجد مقاطع مطابقة لهذا النص." : "اختر مقطعًا من المكتبة." : /* @__PURE__ */ (0, x.jsx)(ee, {}),
+					ue && /* @__PURE__ */ (0, x.jsxs)("div", { children: ["حروف أو رموز بلا مقطع: ", ue] }),
 					a && /* @__PURE__ */ (0, x.jsx)("button", {
 						type: "button",
 						onClick: () => {
@@ -9515,10 +9538,10 @@ function S({ text: e = "", steps: t, onStep: n }) {
 						}
 					}),
 					/* @__PURE__ */ (0, x.jsxs)("select", {
-						value: ie.some((e) => e.src === m) ? m : "",
+						value: ae.some((e) => e.src === m) ? m : "",
 						"aria-label": "اختر مقطعًا",
 						onChange: (e) => {
-							ue(0), h(e.target.value);
+							de(0), h(e.target.value);
 						},
 						style: {
 							width: "100%",
@@ -9526,8 +9549,8 @@ function S({ text: e = "", steps: t, onStep: n }) {
 						},
 						children: [/* @__PURE__ */ (0, x.jsx)("option", {
 							value: "",
-							children: ie.length ? `اختر مقطعًا (${ie.length})` : "لا توجد نتائج"
-						}), ie.map((e) => /* @__PURE__ */ (0, x.jsxs)("option", {
+							children: ae.length ? `اختر مقطعًا (${ae.length})` : "لا توجد نتائج"
+						}), ae.map((e) => /* @__PURE__ */ (0, x.jsxs)("option", {
 							value: e.src,
 							children: [
 								e.label,
@@ -9543,7 +9566,7 @@ function S({ text: e = "", steps: t, onStep: n }) {
 }
 //#endregion
 //#region src/components/SelectionPopup.tsx
-function re() {
+function C() {
 	let [e, t] = (0, l.useState)(() => {
 		try {
 			let e = JSON.parse(localStorage.getItem("maeen_saved_paths") || "[]");
@@ -9572,7 +9595,7 @@ function re() {
 		isSaved: (t) => e.some((e) => e.pathId === t)
 	};
 }
-var C = [
+var ie = [
 	{
 		id: "cases",
 		icon: "⚖️",
@@ -9659,8 +9682,8 @@ var C = [
 		],
 		cta: "انضم للجلسة"
 	}
-], ie = (0, l.forwardRef)(({ text: e, autoTranslate: t = !1, onClose: n, accessibility: r }, i) => {
-	let [a, o] = (0, l.useState)(t ? "sign" : "menu"), [s, c] = (0, l.useState)(null), u = (0, l.useRef)(null), d = re(), f = (0, l.useRef)(null);
+], ae = (0, l.forwardRef)(({ text: e, autoTranslate: t = !1, onClose: n, accessibility: r }, i) => {
+	let [a, o] = (0, l.useState)(t ? "sign" : "menu"), [s, c] = (0, l.useState)(null), u = (0, l.useRef)(null), d = C(), f = (0, l.useRef)(null);
 	(0, l.useEffect)(() => {
 		f.current?.focus({ preventScroll: !0 });
 	}, []), (0, l.useEffect)(() => {
@@ -9668,7 +9691,7 @@ var C = [
 	}, [a]);
 	let p = (e) => {
 		c(e), o("path-detail");
-	}, m = () => a === "sign" ? "لغة الإشارة" : a === "paths" ? "مسارات الإشارة" : a === "path-detail" ? s?.label ?? "" : a === "saved" ? "مساراتي المحفوظة" : a === "a11y" ? "أدوات الوصول الشامل" : "تمكين", h = () => a === "paths" || a === "path-detail" ? /* @__PURE__ */ (0, x.jsx)(me, {
+	}, m = () => a === "sign" ? "لغة الإشارة" : a === "paths" ? "مسارات الإشارة" : a === "path-detail" ? s?.label ?? "" : a === "saved" ? "مساراتي المحفوظة" : a === "a11y" ? "أدوات الوصول الشامل" : "تمكين", h = () => a === "paths" || a === "path-detail" ? /* @__PURE__ */ (0, x.jsx)(he, {
 		size: 14,
 		color: "#fff"
 	}) : a === "saved" ? /* @__PURE__ */ (0, x.jsx)("span", {
@@ -9869,7 +9892,7 @@ var C = [
 					flex: 1
 				},
 				children: [
-					a === "sign" && /* @__PURE__ */ (0, x.jsx)(S, { text: e }),
+					a === "sign" && /* @__PURE__ */ (0, x.jsx)(re, { text: e }),
 					a === "menu" && /* @__PURE__ */ (0, x.jsx)(w, {
 						text: e,
 						onPathsClick: () => o("paths"),
@@ -9877,18 +9900,18 @@ var C = [
 						onA11yClick: () => o("a11y"),
 						savedCount: d.saved.length
 					}),
-					a === "paths" && /* @__PURE__ */ (0, x.jsx)(de, {
+					a === "paths" && /* @__PURE__ */ (0, x.jsx)(fe, {
 						onSelect: p,
 						savedHook: d
 					}),
-					a === "path-detail" && s && /* @__PURE__ */ (0, x.jsx)(fe, { path: s }),
-					a === "saved" && /* @__PURE__ */ (0, x.jsx)(ue, {
+					a === "path-detail" && s && /* @__PURE__ */ (0, x.jsx)(pe, { path: s }),
+					a === "saved" && /* @__PURE__ */ (0, x.jsx)(de, {
 						savedHook: d,
 						onSelect: (e) => {
 							p(e);
 						}
 					}),
-					a === "a11y" && /* @__PURE__ */ (0, x.jsx)(oe, { settings: r })
+					a === "a11y" && /* @__PURE__ */ (0, x.jsx)(se, { settings: r })
 				]
 			}),
 			/* @__PURE__ */ (0, x.jsxs)("div", {
@@ -9909,12 +9932,12 @@ var C = [
 						lineHeight: 1.5
 					},
 					children: "إحدى مبادرات تقنية المعلومات في ديوان المظالم"
-				}), /* @__PURE__ */ (0, x.jsx)(pe, {})]
+				}), /* @__PURE__ */ (0, x.jsx)(me, {})]
 			})
 		]
 	}), /* @__PURE__ */ (0, x.jsx)("style", { children: "\n        @keyframes slideInLeft {\n          from { opacity: 0; transform: translateY(-50%) translateX(-100%); }\n          to   { opacity: 1; transform: translateY(-50%) translateX(0); }\n        }\n        @keyframes wavePulse {\n          from { transform: scaleY(0.4); }\n          to   { transform: scaleY(1); }\n        }\n        @keyframes handsMove {\n          from { transform: rotate(-15deg); }\n          to   { transform: rotate(15deg); }\n        }\n        @keyframes popupIn {\n          from { opacity: 0; transform: translateY(4px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n        @keyframes stepIn {\n          from { opacity: 0; transform: translateX(-10px); }\n          to   { opacity: 1; transform: translateX(0); }\n        }\n        @keyframes dropDown {\n          from { opacity: 0; transform: translateY(-8px); }\n          to   { opacity: 1; transform: translateY(0); }\n        }\n      " })] });
 });
-ie.displayName = "SelectionPopup";
+ae.displayName = "SelectionPopup";
 function w({ text: e, onPathsClick: t, onSavedClick: n, onA11yClick: r, savedCount: i }) {
 	let [a, o] = (0, l.useState)(!1), s = (0, l.useRef)(null);
 	return (0, l.useEffect)(() => {
@@ -9960,7 +9983,7 @@ function w({ text: e, onPathsClick: t, onSavedClick: n, onA11yClick: r, savedCou
 									justifyContent: "center",
 									boxShadow: "0 3px 10px #00e5a044"
 								},
-								children: /* @__PURE__ */ (0, x.jsx)(me, {
+								children: /* @__PURE__ */ (0, x.jsx)(he, {
 									size: 16,
 									color: "#fff"
 								})
@@ -9973,7 +9996,7 @@ function w({ text: e, onPathsClick: t, onSavedClick: n, onA11yClick: r, savedCou
 								},
 								children: "لغة الإشارة"
 							}) })]
-						}), e && /* @__PURE__ */ (0, x.jsx)(E, { text: e })]
+						}), e && /* @__PURE__ */ (0, x.jsx)(le, { text: e })]
 					}),
 					!a && /* @__PURE__ */ (0, x.jsx)("div", {
 						style: {
@@ -10002,7 +10025,7 @@ function w({ text: e, onPathsClick: t, onSavedClick: n, onA11yClick: r, savedCou
 					}),
 					a && /* @__PURE__ */ (0, x.jsx)("div", {
 						ref: s,
-						children: /* @__PURE__ */ (0, x.jsx)(S, { text: e })
+						children: /* @__PURE__ */ (0, x.jsx)(re, { text: e })
 					}),
 					/* @__PURE__ */ (0, x.jsx)("div", {
 						style: { padding: a ? "8px 12px 12px" : "10px 12px 12px" },
@@ -10078,16 +10101,16 @@ function w({ text: e, onPathsClick: t, onSavedClick: n, onA11yClick: r, savedCou
 					})
 				]
 			}),
-			/* @__PURE__ */ (0, x.jsx)(se, { onPathsClick: t }),
-			/* @__PURE__ */ (0, x.jsx)(ae, {
+			/* @__PURE__ */ (0, x.jsx)(ce, { onPathsClick: t }),
+			/* @__PURE__ */ (0, x.jsx)(T, {
 				onSavedClick: n,
 				savedCount: i
 			}),
-			/* @__PURE__ */ (0, x.jsx)(T, { onA11yClick: r })
+			/* @__PURE__ */ (0, x.jsx)(oe, { onA11yClick: r })
 		]
 	});
 }
-function ae({ onSavedClick: e, savedCount: t }) {
+function T({ onSavedClick: e, savedCount: t }) {
 	let [n, r] = (0, l.useState)(!1);
 	return /* @__PURE__ */ (0, x.jsxs)("button", {
 		onClick: e,
@@ -10155,7 +10178,7 @@ function ae({ onSavedClick: e, savedCount: t }) {
 		]
 	});
 }
-function T({ onA11yClick: e }) {
+function oe({ onA11yClick: e }) {
 	let [t, n] = (0, l.useState)(!1);
 	return /* @__PURE__ */ (0, x.jsxs)("button", {
 		onClick: e,
@@ -10231,7 +10254,7 @@ function T({ onA11yClick: e }) {
 		]
 	});
 }
-function oe({ settings: e }) {
+function se({ settings: e }) {
 	let { fontSize: t, setFontSize: n, contrast: r, setContrast: i, dyslexia: a, setDyslexia: o, lineHeight: s, setLineHeight: c, hideImages: l, setHideImages: u, cursor: d, setCursor: f, grayscale: p, setGrayscale: m } = e;
 	function h({ label: e, icon: t, active: n, onToggle: r, color: i }) {
 		return /* @__PURE__ */ (0, x.jsxs)("button", {
@@ -10442,7 +10465,7 @@ function oe({ settings: e }) {
 				onToggle: () => m((e) => !e),
 				color: "#64748b"
 			}),
-			/* @__PURE__ */ (0, x.jsx)(E, { page: !0 }),
+			/* @__PURE__ */ (0, x.jsx)(le, { page: !0 }),
 			/* @__PURE__ */ (0, x.jsx)("button", {
 				onClick: () => {
 					n(100), i(!1), o(!1), c(!1), u(!1), f(!1), m(!1);
@@ -10472,7 +10495,7 @@ function oe({ settings: e }) {
 		]
 	});
 }
-function se({ onPathsClick: e }) {
+function ce({ onPathsClick: e }) {
 	let [t, n] = (0, l.useState)(!1);
 	return /* @__PURE__ */ (0, x.jsxs)("div", {
 		role: "button",
@@ -10620,7 +10643,7 @@ function se({ onPathsClick: e }) {
 						display: "flex",
 						gap: 2
 					},
-					children: C.map((e) => /* @__PURE__ */ (0, x.jsx)("div", { style: {
+					children: ie.map((e) => /* @__PURE__ */ (0, x.jsx)("div", { style: {
 						width: 5,
 						height: 5,
 						borderRadius: "50%",
@@ -10633,7 +10656,7 @@ function se({ onPathsClick: e }) {
 		]
 	});
 }
-function ce() {
+function E() {
 	let [e, t] = (0, l.useState)(null), [n, r] = (0, l.useState)(!1), i = (0, l.useRef)(null);
 	(0, l.useEffect)(() => () => {
 		i.current && (i.current = null, window.speechSynthesis.cancel());
@@ -10658,8 +10681,8 @@ function ce() {
 		speak: a
 	};
 }
-function E({ text: e, page: t = !1 }) {
-	let n = ce(), r = !!n.speaking;
+function le({ text: e, page: t = !1 }) {
+	let n = E(), r = !!n.speaking;
 	return "speechSynthesis" in window ? /* @__PURE__ */ (0, x.jsxs)("div", { children: [/* @__PURE__ */ (0, x.jsx)("button", {
 		type: "button",
 		"aria-pressed": r,
@@ -10729,7 +10752,7 @@ function E({ text: e, page: t = !1 }) {
 		children: "تعذّرت القراءة في هذا المتصفح."
 	})] }) : null;
 }
-function le({ id: e, color: t }) {
+function ue({ id: e, color: t }) {
 	let n = t, r = "#f5c5a3", i = "#e8a882";
 	return e === "cases" ? /* @__PURE__ */ (0, x.jsxs)("svg", {
 		width: "52",
@@ -11315,7 +11338,7 @@ function le({ id: e, color: t }) {
 		]
 	}) : null;
 }
-function ue({ savedHook: e, onSelect: t }) {
+function de({ savedHook: e, onSelect: t }) {
 	let { saved: n, remove: r } = e;
 	return n.length === 0 ? /* @__PURE__ */ (0, x.jsxs)("div", {
 		style: {
@@ -11380,7 +11403,7 @@ function ue({ savedHook: e, onSelect: t }) {
 				padding: "0 12px 12px"
 			},
 			children: n.map((e, n) => {
-				let i = C.find((t) => t.id === e.pathId);
+				let i = ie.find((t) => t.id === e.pathId);
 				return i ? /* @__PURE__ */ (0, x.jsxs)("div", {
 					style: {
 						background: "#fff",
@@ -11405,7 +11428,7 @@ function ue({ savedHook: e, onSelect: t }) {
 								alignItems: "center",
 								justifyContent: "center"
 							},
-							children: /* @__PURE__ */ (0, x.jsx)(le, {
+							children: /* @__PURE__ */ (0, x.jsx)(ue, {
 								id: i.id,
 								color: i.color
 							})
@@ -11491,8 +11514,8 @@ function ue({ savedHook: e, onSelect: t }) {
 		})]
 	});
 }
-function de({ onSelect: e, savedHook: t }) {
-	let n = ce(), [r, i] = (0, l.useState)(null), { isSaved: a, save: o, remove: s, saved: c } = t;
+function fe({ onSelect: e, savedHook: t }) {
+	let n = E(), [r, i] = (0, l.useState)(null), { isSaved: a, save: o, remove: s, saved: c } = t;
 	return /* @__PURE__ */ (0, x.jsxs)("div", {
 		style: {
 			background: "#fafafa",
@@ -11510,7 +11533,7 @@ function de({ onSelect: e, savedHook: t }) {
 				gridTemplateColumns: "1fr 1fr",
 				gap: 8
 			},
-			children: C.map((t, l) => {
+			children: ie.map((t, l) => {
 				let u = r === t.id, d = n.speaking === t.id, f = a(t.id), p = c.find((e) => e.pathId === t.id);
 				return /* @__PURE__ */ (0, x.jsxs)("div", {
 					style: {
@@ -11551,7 +11574,7 @@ function de({ onSelect: e, savedHook: t }) {
 									justifyContent: "center",
 									transition: "all 0.18s"
 								},
-								children: /* @__PURE__ */ (0, x.jsx)(le, {
+								children: /* @__PURE__ */ (0, x.jsx)(ue, {
 									id: t.id,
 									color: u ? t.color : "#bbb"
 								})
@@ -11656,7 +11679,7 @@ function de({ onSelect: e, savedHook: t }) {
 		})]
 	});
 }
-function fe({ path: e }) {
+function pe({ path: e }) {
 	let [t, n] = (0, l.useState)(0), [r, i] = (0, l.useState)(!1), a = document.querySelector("meta[name=\"balagh-path-" + e.id + "\"]")?.content, o = a && URL.canParse(a, document.baseURI) ? new URL(a, document.baseURI) : null, s = o && ["http:", "https:"].includes(o.protocol) ? o.href : void 0;
 	return /* @__PURE__ */ (0, x.jsxs)("div", {
 		style: { padding: "16px" },
@@ -11731,7 +11754,7 @@ function fe({ path: e }) {
 					} })]
 				}, r))
 			}),
-			r && /* @__PURE__ */ (0, x.jsx)(S, {
+			r && /* @__PURE__ */ (0, x.jsx)(re, {
 				steps: e.steps,
 				onStep: n
 			}),
@@ -11833,7 +11856,7 @@ function fe({ path: e }) {
 		]
 	});
 }
-function pe() {
+function me() {
 	let [e, t] = (0, l.useState)(!1);
 	return /* @__PURE__ */ (0, x.jsxs)("div", {
 		style: {
@@ -11902,7 +11925,7 @@ function pe() {
 		})]
 	});
 }
-function me({ size: e = 20, color: t = "currentColor" }) {
+function he({ size: e = 20, color: t = "currentColor" }) {
 	return /* @__PURE__ */ (0, x.jsxs)("svg", {
 		width: e,
 		height: e,
@@ -11922,7 +11945,7 @@ function me({ size: e = 20, color: t = "currentColor" }) {
 }
 //#endregion
 //#region src/components/WidgetPanel.tsx
-function he({ onClose: e }) {
+function ge({ onClose: e }) {
 	let [t, n] = (0, l.useState)(!1), [r, i] = (0, l.useState)(!1), [a, o] = (0, l.useState)(0), s = { current: null };
 	return /* @__PURE__ */ (0, x.jsxs)(x.Fragment, { children: [
 		/* @__PURE__ */ (0, x.jsx)("div", {
@@ -12023,8 +12046,8 @@ function he({ onClose: e }) {
 						flexDirection: "column",
 						gap: 8
 					},
-					children: [/* @__PURE__ */ (0, x.jsx)(ge, {
-						icon: t ? ve : _e,
+					children: [/* @__PURE__ */ (0, x.jsx)(_e, {
+						icon: t ? ye : ve,
 						label: t ? "إيقاف القراءة" : "قراءة الصفحة بصوت عالٍ",
 						sublabel: "Text-to-Speech",
 						accent: t ? "#00e5a0" : "#1a1aff",
@@ -12039,8 +12062,8 @@ function he({ onClose: e }) {
 							}
 						},
 						active: t
-					}), /* @__PURE__ */ (0, x.jsx)(ge, {
-						icon: ye,
+					}), /* @__PURE__ */ (0, x.jsx)(_e, {
+						icon: be,
 						label: "ترجمة الصفحة — لغة الإشارة",
 						sublabel: "Arabic Sign Language",
 						accent: "#1a1aff",
@@ -12183,7 +12206,7 @@ function he({ onClose: e }) {
 		/* @__PURE__ */ (0, x.jsx)("style", { children: "\n        @keyframes panelIn {\n          from { opacity: 0; transform: scale(0.85) translateY(12px); transform-origin: bottom right; }\n          to   { opacity: 1; transform: scale(1) translateY(0); transform-origin: bottom right; }\n        }\n        @keyframes handsMove {\n          from { transform: rotate(-12deg) }\n          to   { transform: rotate(12deg) }\n        }\n      " })
 	] });
 }
-function ge({ icon: e, label: t, sublabel: n, accent: r, onClick: i, active: a }) {
+function _e({ icon: e, label: t, sublabel: n, accent: r, onClick: i, active: a }) {
 	return /* @__PURE__ */ (0, x.jsxs)("button", {
 		onClick: i,
 		style: {
@@ -12239,7 +12262,7 @@ function ge({ icon: e, label: t, sublabel: n, accent: r, onClick: i, active: a }
 		})]
 	});
 }
-function _e({ color: e }) {
+function ve({ color: e }) {
 	return /* @__PURE__ */ (0, x.jsxs)("svg", {
 		width: "16",
 		height: "16",
@@ -12251,7 +12274,7 @@ function _e({ color: e }) {
 		children: [/* @__PURE__ */ (0, x.jsx)("polygon", { points: "11 5 6 9 2 9 2 15 6 15 11 19 11 5" }), /* @__PURE__ */ (0, x.jsx)("path", { d: "M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" })]
 	});
 }
-function ve({ color: e }) {
+function ye({ color: e }) {
 	return /* @__PURE__ */ (0, x.jsxs)("svg", {
 		width: "16",
 		height: "16",
@@ -12272,7 +12295,7 @@ function ve({ color: e }) {
 		})]
 	});
 }
-function ye({ color: e }) {
+function be({ color: e }) {
 	return /* @__PURE__ */ (0, x.jsxs)("svg", {
 		width: "16",
 		height: "16",
@@ -12292,7 +12315,7 @@ function ye({ color: e }) {
 }
 //#endregion
 //#region src/components/useAccessibilitySettings.ts
-function be() {
+function xe() {
 	let [e, t] = (0, l.useState)(100), [n, r] = (0, l.useState)(!1), [i, a] = (0, l.useState)(!1), [o, s] = (0, l.useState)(!1), [c, u] = (0, l.useState)(!1), [d, f] = (0, l.useState)(!1), [p, m] = (0, l.useState)(!1);
 	return (0, l.useEffect)(() => {
 		let t = "body > :not(balagh-widget)", r = "body :is(p, li, dt, dd, h1, h2, h3, h4, h5, h6, label, td, th, blockquote)", a = [n && "contrast(1.6)", p && "grayscale(1)"].filter(Boolean).join(" "), s = [
@@ -12333,8 +12356,8 @@ function be() {
 }
 //#endregion
 //#region src/components/AccessibilityWidget.tsx
-function xe({ standalone: e = !1 }) {
-	let [t, n] = (0, l.useState)(!1), [r, i] = (0, l.useState)(null), [a, o] = (0, l.useState)(!1), [s, c] = (0, l.useState)(""), [u, d] = (0, l.useState)(!1), f = be(), p = (0, l.useRef)(null), m = (0, l.useRef)(null), h = (0, l.useRef)(null), g = (0, l.useCallback)((e) => {
+function Se({ standalone: e = !1 }) {
+	let [t, n] = (0, l.useState)(!1), [r, i] = (0, l.useState)(null), [a, o] = (0, l.useState)(!1), [s, c] = (0, l.useState)(""), [u, d] = (0, l.useState)(!1), f = xe(), p = (0, l.useRef)(null), m = (0, l.useRef)(null), h = (0, l.useRef)(null), g = (0, l.useCallback)((e) => {
 		if (e.composedPath().some((e) => e instanceof Element && e.matches("balagh-widget, [data-balagh-panel], input, textarea, [contenteditable]:not([contenteditable=\"false\"])"))) return;
 		let t = window.getSelection(), n = t?.toString().trim().slice(0, 500);
 		if (!n || !t?.rangeCount) {
@@ -12403,10 +12426,10 @@ function xe({ standalone: e = !1 }) {
 				},
 				onMouseEnter: (e) => e.currentTarget.style.background = "#00c47a",
 				onMouseLeave: (e) => e.currentTarget.style.background = "#00e5a0",
-				children: /* @__PURE__ */ (0, x.jsx)(Se, { size: 17 })
+				children: /* @__PURE__ */ (0, x.jsx)(Ce, { size: 17 })
 			})
 		}),
-		a && /* @__PURE__ */ (0, x.jsx)(ie, {
+		a && /* @__PURE__ */ (0, x.jsx)(ae, {
 			ref: p,
 			text: s,
 			autoTranslate: u,
@@ -12448,9 +12471,9 @@ function xe({ standalone: e = !1 }) {
 			onMouseLeave: (e) => {
 				e.currentTarget.style.transform = a ? "scale(0.92)" : "scale(1)";
 			},
-			children: /* @__PURE__ */ (0, x.jsx)(Se, { size: 28 })
+			children: /* @__PURE__ */ (0, x.jsx)(Ce, { size: 28 })
 		}),
-		!e && t && /* @__PURE__ */ (0, x.jsx)(he, { onClose: () => n(!1) }),
+		!e && t && /* @__PURE__ */ (0, x.jsx)(ge, { onClose: () => n(!1) }),
 		!e && /* @__PURE__ */ (0, x.jsx)("button", {
 			onClick: () => n((e) => !e),
 			title: "إمكانية الوصول",
@@ -12520,7 +12543,7 @@ function xe({ standalone: e = !1 }) {
 		/* @__PURE__ */ (0, x.jsx)("style", { children: "\n        @keyframes bubbleIn {\n          from { opacity: 0; transform: translate(-50%, calc(-100% + 8px)); }\n          to   { opacity: 1; transform: translate(-50%, -100%); }\n        }\n        @media (max-height: 740px), (max-width: 340px) {\n          [data-balagh-panel] {\n            top: calc((100dvh - 88px) / 2) !important;\n            max-height: calc(100dvh - 104px) !important;\n          }\n        }\n      " })
 	] });
 }
-function Se({ size: e = 20 }) {
+function Ce({ size: e = 20 }) {
 	return /* @__PURE__ */ (0, x.jsxs)("svg", {
 		width: e,
 		height: e,
@@ -12540,7 +12563,7 @@ function Se({ size: e = 20 }) {
 }
 //#endregion
 //#region src/widget.tsx
-function Ce() {
+function D() {
 	if (document.querySelector("balagh-widget")) return;
 	g(new URL(
 		/* @vite-ignore */
@@ -12552,7 +12575,7 @@ function Ce() {
 	let t = e.attachShadow({ mode: "open" }), n = document.createElement("style");
 	n.textContent = "\n    :host { all: initial; direction: rtl; color: #111; font: 16px/1.5 'Almarai', sans-serif; }\n    *, *::before, *::after { box-sizing: border-box; }\n    [hidden] { display: none !important; }\n    button, input, select { font: inherit; color: inherit; }\n    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #1a1aff; outline-offset: 2px; }\n    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }\n  ";
 	let r = document.createElement("div");
-	t.append(n, r), document.body.append(e), (0, u.createRoot)(r).render(/* @__PURE__ */ (0, x.jsx)(xe, { standalone: !0 }));
+	t.append(n, r), document.body.append(e), (0, u.createRoot)(r).render(/* @__PURE__ */ (0, x.jsx)(Se, { standalone: !0 }));
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", Ce, { once: !0 }) : Ce();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", D, { once: !0 }) : D();
 //#endregion
