@@ -9149,13 +9149,7 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 	function S() {
 		if (!y.current) {
 			if (!t) return g.current.onEnded();
-			y.current = !0, te.current = setTimeout(() => ee(!0), 1200), ne([{
-				transform: "translateX(-105%)",
-				opacity: 1
-			}, {
-				transform: "translateX(0)",
-				opacity: 1
-			}], 180).then(() => g.current.onEnded()).catch(() => {});
+			y.current = !0, te.current = setTimeout(() => ee(!0), 1200), ne([{ opacity: 0 }, { opacity: 1 }], 50).then(() => g.current.onEnded()).catch(() => {});
 		}
 	}
 	(0, l.useEffect)(() => {
@@ -9169,13 +9163,7 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 			if (r.pause(), t && r.getAttribute("src") !== t && (r.src = t, r.load()), t && r.ended && (r.currentTime = 0), e) {
 				if (clearTimeout(te.current), ee(!1), await new Promise((e) => requestAnimationFrame(() => requestAnimationFrame(() => e()))), n) return;
 				try {
-					if (await ne([{
-						transform: "translateX(0)",
-						opacity: 1
-					}, {
-						transform: "translateX(105%)",
-						opacity: 1
-					}], 220), n) return;
+					if (await ne([{ opacity: 1 }, { opacity: 0 }], 90), n) return;
 					y.current = !1, await l.play();
 				} catch {
 					n || p(!0);
@@ -9269,10 +9257,10 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 					"data-sign-transition": !0,
 					style: {
 						position: "absolute",
-						inset: "-2px",
-						transform: "translateX(-105%)",
-						background: "linear-gradient(115deg, #f0fdf8 0%, #d4f5e8 44%, #b3edd9 54%, #e6fff7 64%, #f0fdf8 100%)",
-						boxShadow: "-12px 0 28px #b3edd933, 12px 0 28px #b3edd933"
+						inset: 0,
+						opacity: 0,
+						backdropFilter: "blur(1.5px)",
+						WebkitBackdropFilter: "blur(1.5px)"
 					}
 				})
 			}),
