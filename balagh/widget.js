@@ -9135,14 +9135,52 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 	g.current = {
 		onEnded: i,
 		onError: a
-	}, (0, l.useEffect)(() => {
+	};
+	let _ = (0, l.useRef)(null), v = (0, l.useRef)(null), y = (0, l.useRef)(!1), [b, ee] = (0, l.useState)(!1), te = (0, l.useRef)(void 0);
+	function ne(e, t) {
+		v.current?.cancel();
+		let n = window.matchMedia("(prefers-reduced-motion: reduce)").matches, r = _.current.animate(e, {
+			duration: n ? 1 : t,
+			fill: "forwards",
+			easing: "cubic-bezier(.22,.61,.36,1)"
+		});
+		return v.current = r, r.finished;
+	}
+	function S() {
+		if (!y.current) {
+			if (!t) return g.current.onEnded();
+			y.current = !0, te.current = setTimeout(() => ee(!0), 1200), ne([{
+				transform: "translateX(-105%)",
+				opacity: 1
+			}, {
+				transform: "translateX(0)",
+				opacity: 1
+			}], 180).then(() => g.current.onEnded()).catch(() => {});
+		}
+	}
+	(0, l.useEffect)(() => {
 		let n = !1, r, i = 1 - c.current, a = s.current[i]?.getAttribute("src") === e ? i : s.current.findIndex((t) => t?.getAttribute("src") === e), o = a >= 0 ? a : 1 - c.current, l = s.current[o];
 		l.getAttribute("src") !== e && (l.src = e, l.load()), l.ended && (l.currentTime = 0), p(!1);
-		function u() {
+		async function u() {
 			if (n) return;
-			c.current = o, d(o);
-			let e = s.current[1 - o];
-			e.pause(), t && e.getAttribute("src") !== t && (e.src = t, e.load()), t && e.ended && (e.currentTime = 0);
+			let e = y.current;
+			e && l.pause(), c.current = o, d(o);
+			let r = s.current[1 - o];
+			if (r.pause(), t && r.getAttribute("src") !== t && (r.src = t, r.load()), t && r.ended && (r.currentTime = 0), e) {
+				if (clearTimeout(te.current), ee(!1), await new Promise((e) => requestAnimationFrame(() => requestAnimationFrame(() => e()))), n) return;
+				try {
+					if (await ne([{
+						transform: "translateX(0)",
+						opacity: 1
+					}, {
+						transform: "translateX(105%)",
+						opacity: 1
+					}], 220), n) return;
+					y.current = !1, await l.play();
+				} catch {
+					n || p(!0);
+				}
+			}
 		}
 		function f() {
 			"requestVideoFrameCallback" in l ? r = l.requestVideoFrameCallback(u) : u();
@@ -9159,10 +9197,11 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 	]), (0, l.useEffect)(() => {
 		let e = s.current;
 		return () => {
+			clearTimeout(te.current), v.current?.cancel();
 			for (let t of e) t?.pause(), t?.removeAttribute("src"), t?.load();
 		};
 	}, []);
-	function _() {
+	function re() {
 		h(!1);
 		let e = o.current;
 		e?.close(), e?.show(), document.fullscreenElement && document.exitFullscreen().catch(() => {});
@@ -9173,7 +9212,7 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 		"data-sign-player": !0,
 		"aria-label": "مشغل لغة الإشارة",
 		onCancel: (e) => {
-			e.preventDefault(), _();
+			e.preventDefault(), re();
 		},
 		style: {
 			position: m ? "fixed" : "relative",
@@ -9198,12 +9237,13 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 				muted: !0,
 				playsInline: !0,
 				preload: "auto",
+				controlsList: "nofullscreen",
 				controls: t === u,
 				onEnded: () => {
-					t === c.current && g.current.onEnded();
+					t === c.current && S();
 				},
 				onError: () => {
-					s.current[t]?.getAttribute("src") === e && g.current.onError();
+					s.current[t]?.getAttribute("src") === e && (clearTimeout(te.current), ee(!1), g.current.onError());
 				},
 				style: {
 					position: "absolute",
@@ -9216,6 +9256,37 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 					pointerEvents: t === u ? "auto" : "none"
 				}
 			}, t)),
+			/* @__PURE__ */ (0, x.jsx)("div", {
+				"aria-hidden": "true",
+				style: {
+					position: "absolute",
+					inset: 0,
+					overflow: "hidden",
+					pointerEvents: "none"
+				},
+				children: /* @__PURE__ */ (0, x.jsx)("div", {
+					ref: _,
+					"data-sign-transition": !0,
+					style: {
+						position: "absolute",
+						inset: "-2px",
+						transform: "translateX(-105%)",
+						background: "linear-gradient(115deg, #f0fdf8 0%, #d4f5e8 44%, #b3edd9 54%, #e6fff7 64%, #f0fdf8 100%)",
+						boxShadow: "-12px 0 28px #b3edd933, 12px 0 28px #b3edd933"
+					}
+				})
+			}),
+			b && /* @__PURE__ */ (0, x.jsx)("span", {
+				role: "status",
+				style: {
+					position: "absolute",
+					inset: "48% 0 auto",
+					textAlign: "center",
+					fontSize: 12,
+					color: "#16473c"
+				},
+				children: "جارٍ تجهيز المقطع التالي…"
+			}),
 			f && /* @__PURE__ */ (0, x.jsx)("button", {
 				type: "button",
 				onClick: () => {
@@ -9233,7 +9304,7 @@ function ee({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 				"aria-label": m ? "إنهاء ملء الشاشة" : "ملء الشاشة",
 				onClick: () => {
 					let e = o.current;
-					if (m) return _();
+					if (m) return re();
 					e && (h(!0), e.close(), e.showModal(), e.requestFullscreen?.().catch(() => {}));
 				},
 				style: {
