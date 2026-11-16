@@ -9161,8 +9161,12 @@ function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 		onEnded: i,
 		onError: a
 	};
-	let _ = (0, l.useRef)(null), v = (0, l.useRef)(null), y = (0, l.useRef)(!1), [b, te] = (0, l.useState)(!1), ne = (0, l.useRef)(void 0);
-	function S(e, t) {
+	let _ = (0, l.useRef)(null), v = (0, l.useRef)(null), y = (0, l.useRef)(!1), [b, te] = (0, l.useState)(!1), ne = (0, l.useRef)(void 0), [S, re] = (0, l.useState)(() => typeof window < "u" && window.matchMedia("(pointer: coarse)").matches);
+	(0, l.useEffect)(() => {
+		let e = window.matchMedia("(pointer: coarse)"), t = () => re(e.matches);
+		return e.addEventListener("change", t), () => e.removeEventListener("change", t);
+	}, []);
+	function C(e, t) {
 		v.current?.cancel();
 		let n = window.matchMedia("(prefers-reduced-motion: reduce)").matches, r = _.current.animate(e, {
 			duration: n ? 1 : t,
@@ -9171,10 +9175,10 @@ function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 		});
 		return v.current = r, r.finished;
 	}
-	function re() {
+	function ie() {
 		if (!y.current) {
 			if (!t) return g.current.onEnded();
-			y.current = !0, ne.current = setTimeout(() => te(!0), 1200), S([{ opacity: 0 }, { opacity: 1 }], 50).catch(() => {}), g.current.onEnded();
+			y.current = !0, ne.current = setTimeout(() => te(!0), 1200), C([{ opacity: 0 }, { opacity: 1 }], 50).catch(() => {}), g.current.onEnded();
 		}
 	}
 	(0, l.useEffect)(() => {
@@ -9190,7 +9194,7 @@ function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 			}, 110), e) {
 				if (clearTimeout(ne.current), te(!1), await new Promise((e) => requestAnimationFrame(() => requestAnimationFrame(() => e()))), n) return;
 				try {
-					if (await S([{ opacity: 1 }, { opacity: 0 }], 90), n) return;
+					if (await C([{ opacity: 1 }, { opacity: 0 }], 90), n) return;
 					y.current = !1;
 				} catch {
 					n || p(!0);
@@ -9216,7 +9220,7 @@ function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 			for (let t of e) t?.pause(), t?.removeAttribute("src"), t?.load();
 		};
 	}, []);
-	function C() {
+	function ae() {
 		h(!1);
 		let e = o.current;
 		e?.close(), e?.show(), document.fullscreenElement && document.exitFullscreen().catch(() => {});
@@ -9227,7 +9231,7 @@ function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 		"data-sign-player": !0,
 		"aria-label": "مشغل لغة الإشارة",
 		onCancel: (e) => {
-			e.preventDefault(), C();
+			e.preventDefault(), ae();
 		},
 		style: {
 			position: m ? "fixed" : "relative",
@@ -9253,9 +9257,10 @@ function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 				playsInline: !0,
 				preload: "auto",
 				controlsList: "nofullscreen",
-				controls: t === u,
+				controls: t === u && !S,
+				onContextMenu: (e) => e.preventDefault(),
 				onEnded: () => {
-					t === c.current && re();
+					t === c.current && ie();
 				},
 				onError: () => {
 					s.current[t]?.getAttribute("src") === e && (clearTimeout(ne.current), te(!1), g.current.onError());
@@ -9269,7 +9274,11 @@ function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 					objectFit: "contain",
 					opacity: +(t === u),
 					transition: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "none" : "opacity 90ms linear",
-					pointerEvents: t === u ? "auto" : "none"
+					pointerEvents: t === u ? "auto" : "none",
+					userSelect: "none",
+					WebkitUserSelect: "none",
+					WebkitTouchCallout: "none",
+					touchAction: "manipulation"
 				}
 			}, t)),
 			/* @__PURE__ */ (0, x.jsx)("div", {
@@ -9316,7 +9325,7 @@ function te({ src: e, nextSrc: t, position: n, label: r, onEnded: i, onError: a 
 				"aria-label": m ? "إنهاء ملء الشاشة" : "ملء الشاشة",
 				onClick: () => {
 					let e = o.current;
-					if (m) return C();
+					if (m) return ae();
 					e && (h(!0), e.close(), e.showModal(), e.requestFullscreen?.().catch(() => {}));
 				},
 				style: {
@@ -13150,7 +13159,7 @@ function ke({ standalone: e = !1 }) {
 		return document.addEventListener("mousedown", e), () => document.removeEventListener("mousedown", e);
 	}, [r]);
 	let _ = (e, t = !1) => {
-		c(e), d(t), o(!0), i(null);
+		window.getSelection()?.removeAllRanges(), c(e), d(t), o(!0), i(null);
 	}, v = () => {
 		o(!1), h.current?.focus({ preventScroll: !0 });
 	};
